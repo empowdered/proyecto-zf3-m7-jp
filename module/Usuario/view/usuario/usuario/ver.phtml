@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1><?php echo $this->titulo; ?></h1>
+</div>
+
+<p><a class="btn btn-default" href="<?php echo $this->basePath() ?>/usuario/index">&DoubleLeftArrow; volver</a>
+</p>
+<?php if ($this->usuario !== null): ?>
+    <p>
+        <span><strong>Id:</strong></span>
+        <?php echo $this->usuario->getId() ?>
+    </p>
+    <p>
+        <span><strong>Nombre:</strong></span>
+        <?php echo $this->usuario->getNombre() ?>
+    </p>
+    <p>
+        <span><strong>Apellido:</strong></span>
+        <?php echo $this->usuario->getApellido() ?>
+    </p>
+     <p>
+        <span><strong>Correo:</strong></span>
+        <?php echo $this->usuario->getCorreo() ?>
+    </p>
+<?php else: ?>
+    <h4>Usuario no encontrado</h4>
+<?php endif; ?>

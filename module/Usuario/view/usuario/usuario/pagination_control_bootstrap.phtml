@@ -1,0 +1,50 @@
+<!--
+http://getbootstrap.com/components/#pagination
+-->
+<?php if ($this->pageCount): ?>
+<nav aria-label="Page navigation">
+<ul class="pagination">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+<li>
+<a aria-label="Previous" href="<?= $this->url($this->route, ['action' => $this->action,
+'page' => $this->previous]) ?>">
+<span aria-hidden="true">&laquo; Atr&aacute;s</span>
+</a>
+</li>
+<?php else: ?>
+<li class="disabled">
+<span aria-hidden="true">&laquo; Atr&aacute;s</span>
+</li>
+<?php endif; ?>
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+<?php if ($page != $this->current): ?>
+<li><a href="<?= $this->url($this->route, ['action' => $this->action, 'page' => $page]) ?>">
+<?= $page ?>
+</a> </li>
+<?php else: ?>
+<li class="active">
+<span>
+<span aria-hidden="true"><?= $page ?><span class="sr-only">(current)</span></span>
+</span>
+</li>
+<li></li>
+<?php endif; ?>
+<?php endforeach; ?>
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+<li>
+<a aria-label="Next" href="<?= $this->url($this->route, ['action' => $this->action,
+'page' => $this->next]) ?>">
+<span aria-hidden="true">&raquo; Siguiente</span>
+</a>
+</li>
+<?php else: ?>
+<li class="disabled">
+<span class="disabled" aria-hidden="true">&raquo; Siguiente</span>
+</li>
+<?php endif; ?>
+</ul>
+</nav>
+<?php endif; ?>

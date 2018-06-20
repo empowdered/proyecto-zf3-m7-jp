@@ -1,0 +1,157 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+    <head>
+        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+                        ->prependStylesheet($this->basePath('css/style.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+                        ->prependStylesheet($this->basePath('css/estilo.css'))
+        ?>
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery-2.2.4.min.js'))
+        ?>
+    </head>
+    <body>
+    <header>
+         <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+         <div class="container">
+<div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
+                        <span class="sr-only">Desplegar/Ocultar Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                </button>
+ <a href="<?php echo $this->url('home') ?>" class="navbar-brand">
+     <img src="<?= $this->basePath('img/zf-logo.png') ?>" alt="Zend Framework <?= \Application\Module::VERSION ?>"/>
+     &nbsp;Skeleton Application</a>
+ </div>
+ <!-- inicio del menu-->
+                <div class="collapse navbar-collapse" id="navegacion-fm">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Inicio</a></li>
+                        <li class=""><a href="#">Empresa</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Servicios<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class=""><a href="#">Servicio #1</a></li>
+                                <li class="divider"></li>
+                                <li class=""><a href="#">Servicio #2</a></li>
+                                <li class="divider"></li>
+                                <li class=""><a href="#">Servicio #3</a></li>
+                            </ul>
+                        </li>
+                        <li class=""><a href="#">Contacto</a></li>
+                    </ul>
+                    <form action="" class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar..."/>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </form>
+                </div>
+            
+         </div>     
+         </nav>    </header>
+    <!-- aca va  el jumbotron -->
+        <section class="jumbotron jumbotron-fm">
+    <div class="container">
+        <h1 class="titulo-blog"></h1>
+        <p>Demo de sitio Servicios</p>
+    </div>
+</section>    <section class="main container">
+         <section class="post col-md-9">
+                <?=$this->content?>
+         </section>
+        <aside class="col-md-3  hidden-sm hidden-xs">
+    <h4 class="">Servicios</h4>
+    <div class="list-group">
+        <a href="#" class="list-group-item active">Servicio 1</a>
+        <a href="#" class="list-group-item ">Servicio 2</a>
+        <a href="#" class="list-group-item ">Servicio 3</a>
+        <a href="#" class="list-group-item ">Servicio 4</a>
+        <a href="#" class="list-group-item ">Servicio 5</a>
+    </div>
+    <div class="row">
+<section class="col-md-12">
+    <div class="panel panel-header">
+        <h3>Articulos</h3>
+        
+    </div>
+    <div class="panel panel-body">
+        <h4>escoge algo mejor...</h4>    
+        <p class="alert-info">
+            El pie de p?gina es una peque?a zona que ocupa la parte inferior de tu web, y 
+            aunque su tama?o es modesto, resulta de suma importancia en t?rminos de dise?o y 
+            para ofrecer informaci?n
+        </p>
+    </div>
+    <div class="panel panel-body">
+        <h4>es un componente extra...</h4>    
+        <p class="alert-info">
+            El pie de p?gina es una peque?a zona que ocupa la parte inferior de tu web, y 
+            aunque su tama?o es modesto, resulta de suma importancia en t?rminos de dise?o y 
+            para ofrecer informaci?n
+        </p>
+    </div>
+    
+</section>
+</div>
+</aside>
+        </section>
+    <footer>
+        <div class="container-fluid">
+    <div class="pie-pagina row">
+            <div class="col-md-6 col-sm-6  hidden-xs hidden-sm" >
+                <h2>Contactenos</h2>
+                <p class="text-justify">
+                    Direccion: pasaje 2, Santiago
+                    Fono: 25566652, 2665665
+                <p>
+            </div>
+            <div class="col-md-6 col-sm-6  hidden-sm hidden-xs" >
+                <h2>Contactenos</h2>
+                <p class="text-justify">
+                    Direccion: pasaje 2, Santiago
+                    Fono: 25566652, 2665665
+                <p>
+            </div>
+             <div class="col-sm-12 col-xs-12 hidden-lg hidden-sm visible-sm visible-xs row" >
+                <p class="text-justify col-xs-4">
+                     <a class="btn btn-social-icon btn-twitter">
+                                <span class="fa fa-twitter"></span>
+                     </a>
+                <p>
+                 <p class="text-justify col-xs-4">
+                     <a class="btn btn-social-icon btn-twitter">
+                                <span class="fa fa-twitter"></span>
+                     </a>
+                <p>
+                 <p class="text-justify col-xs-4">
+                     <a class="btn btn-social-icon btn-twitter">
+                                <span class="fa fa-twitter"></span>
+                     </a>
+                <p>
+            </div>
+    </div>
+</div>
+
+
+    </footer>    
+        <?= $this->inlineScript() ?>
+    </body>
+</html>

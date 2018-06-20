@@ -1,0 +1,54 @@
+<?php $this->headTitle($this->titulo); ?>
+<div class="page-header">
+<h1><?= $this->escapeHtml($this->titulo) ?></h1>
+</div>
+<p>
+<a class = 'btn btn-default btn-xs' role = 'button'
+href="<?= $this->url('usuario', ['action' => 'crear']); ?>">crear (+)</a>
+</p>
+<table class="table table-bordered" style="width:700px;">
+<thead>
+<tr>
+<th>Id</th>
+<th>Nombre</th>
+<th>Apellido</th>
+<th>Correo</th>
+<th>nombre usuario</th>
+<th>Editar</th>
+<th>Eliminar</th>
+</tr>
+</thead>
+<tbody>
+<?php 
+
+foreach ($this->listaUsuario as $usuarios): 
+ ?>
+<tr style="background-color:<?= $this->cycle(["#F0F0F0", "#FFFFFF"])->next() ?>">
+<td><?= $usuarios->getId(); ?></td>
+<td><?= $this->escapeHtml($usuarios->getNombre()) ?></td>
+<td><?= $usuarios->getApellido() ?></td>
+<td><?= $usuarios->getCorreo() ?></td>
+<td><?= $usuarios->getUserName()?></td>
+
+<td>
+<a href="<?= $this->url('usuario', ['action' => 'editar', 'id' => $usuarios->getId()]) ?>"
+class='btn btn-primary btn-xs' role='button'>editar</a>
+</td>
+<td>
+<a href="<?= $this->url('usuario', ['action' => 'eliminar', 'id' => $usuarios->getId()]) ?>"
+onclick="return confirm('¿Esta seguro que desea eliminar a <?= $usuarios->getId() ?>?');"
+class='btn btn-danger btn-xs' role='button'>eliminar</a>
+</td>
+</tr>
+<?php endforeach; ?>
+</tbody>
+<?php
+$this->cycle()->assign(["#F0F0F0", "#FFFFFF"]);
+$this->cycle()->prev();
+?>
+</table>
+<?= $this->paginationControl(
+$this->paginator,
+'Sliding',
+'usuario/usuario/pagination_control_bootstrap',
+['route' => 'usuario.paginator', 'action' => 'index']) ?>

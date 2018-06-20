@@ -1,0 +1,61 @@
+<?php
+$this->form->prepare();
+$form->setAttribute('action', $this->url('login', ['action' =>'autenticar']))
+		->setAttribute('class', 'form-horizontal')
+		->setAttribute('role', 'form')
+		->setAttribute('method', 'post');
+?>
+<?php if (!$this->identity): ?>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= $this->titulo ?></h3>
+                </div>
+                <div class="panel-body">
+                    <?= $this->form()->openTag($this->form) ?>
+                    <div class="form-group <?= (!empty($this->form->get('email')->getMessages())) ? 'has-error' : '' ?>">
+                        <?= $this->formLabel($this->form->get('email')) ?>
+                        <div class="col-sm-5">
+                            <?= $this->formInput($this->form->get('email')) ?>
+                        </div>
+                        <div style="color: red"><?= $this->formElementErrors($this->form->get('email')) ?></div>
+                    </div>
+
+                    <div class="form-group <?= (!empty($this->form->get('password')->getMessages())) ? 'has-error' : '' ?>">
+                        <?= $this->formLabel($this->form->get('password')) ?>
+                        <div class="col-sm-5">
+                            <?= $this->formInput($this->form->get('password')) ?>
+                        </div>
+                        <div style="color: red"><?= $this->formElementErrors($this->form->get('password')) ?></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-5">
+                            <?= $this->formSubmit($form->get('send')) ?>
+                        </div>
+                    </div>
+
+                    <?= $this->form()->closeTag() ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= $this->identity->nombre; ?>, ya iniciÃ³ sesiÃ³n!</h3>
+        </div>
+        <div class="panel-body">
+            <p>Ha iniciado sesiÃ³n como <strong><?= $this->identity->nombre; ?> <?= $this->identity->apellido; ?></strong></p>
+            <ul>
+                <li><a href="<?= $this->url('usuario', ['action' => 'index']) ?>">Administrar Usuarios</a></li>
+                <li><a href="<?= $this->url('catalogo', ['action' => 'index']) ?>">Administrar Catalogo</a></li>
+                <li><a href="<?= $this->url('login', ['action' => 'logout']) ?>">Cerrar sesi&oacute;n</a></li>
+            </ul>
+        </div>
+    </div>
+
+<?php endif; ?>

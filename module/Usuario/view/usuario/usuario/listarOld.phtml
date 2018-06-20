@@ -1,0 +1,41 @@
+
+<div class="page-header">
+    <h1><?php echo $this->titulo.  "-" . $this->resultado;?></h1>
+</div>
+<form action="<?= $this->url('usuario', ['action' => 'buscar']); ?>" name="formulario" method="post">
+<table class="table" style="width:700px;">
+    <thead>
+        <tr>
+    
+        <td>
+            <input type="text" name="nombre" id="parametro" class="input-sm"/>
+        </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <input type="submit" name="buscar" id="buscar" value="buscar" class="btn btn-default btn-sm"/>
+            </td>
+        </tr>
+        <tr>
+            <th>Cursos</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+             <?php foreach ($this->listaUsuario as $usuario): ?>
+            <tr style="background-color:<?php echo $this->cycle(array("#F0F0F0","#FFFFFF"))->next()?>">
+                <td><?php echo $usuario->getId() ?></td>
+                <td><?php echo $usuario->getNombre() ?></td>
+                <td><?php echo $usuario->getApellido() ?></td>
+                <td>
+                    <a href="<?php echo $this->basePath() ?>/usuario/ver/<?php echo $usuario->getId() ?>">ver</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+    <?php
+    $this->cycle()->assign(array("#F0F0F0", "#FFFFFF"));
+    $this->cycle()->prev();
+    ?>
+</table>
+</form>
