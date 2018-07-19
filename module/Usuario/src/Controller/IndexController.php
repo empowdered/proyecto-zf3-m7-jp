@@ -8,7 +8,7 @@ class IndexController extends AbstractController{
      * {@inheritDoc}
      * @see \Zend\Mvc\Controller\AbstractController::onDispatch()
      */
-    public function onDispatch(\Zend\Mvc\MvcEvent $e)
+    public function onDispatch()
     {
         // TODO Auto-generated method stub
         

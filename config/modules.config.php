@@ -28,4 +28,5 @@ return [
     'Usuario',
     'Curso',
     'Catalogo',
+    'Stock'
 ];

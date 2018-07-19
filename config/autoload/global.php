@@ -20,4 +20,12 @@ return [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ],
     ],
+     'dbSGC' => [
+        'driver' => 'Pdo_Mysql',
+        'database' => 'STG',
+        'hostname' => '192.168.2.18',
+        'driver_options' => [
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+        ],
+    ]
 ];

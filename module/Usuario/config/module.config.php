@@ -8,7 +8,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\UsuarioController::class => Controller\ControllerFactory::class,
-            Controller\LoginController::class => Controller\LoginController::class,
+            Controller\LoginController::class => Controller\ControllerFactory::class,
 
         ],
     ],
@@ -25,31 +25,18 @@ return [
                     ],
                 ],
             ],
-            'login' => [
-                'type' => Literal::class,
+             'login' => [
+                'type' => Segment::class,
                 'options' => [
-                    'route'    => '/',
+                    'route' => '/login[/:action]',
                     'defaults' => [
                         'controller' => Controller\LoginController::class,
-                        'action'     => 'index',
+                        'action' => 'index',
                     ],
                 ],
-            ],
+            ],  
+            
             'usuario' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/usuario[/:action][/:id]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+',
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\UsuarioController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],
-            'login' => [
                 'type'    => Segment::class,
                 'options' => [
                     'route'    => '/usuario[/:action][/:id]',

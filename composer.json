@@ -26,7 +26,8 @@
         "zendframework/zend-modulemanager": "^2.8",
         "zendframework/zend-paginator": "^2.8",
         "zendframework/zend-authentication": "^2.6",
-        "zendframework/zend-mvc-plugin-flashmessenger": "^1.1"
+        "zendframework/zend-mvc-plugin-flashmessenger": "^1.1",
+        "zendframework/zend-soap": "^2.7"
     },
     "autoload": {
         "psr-4": {
@@ -34,7 +35,8 @@
             "Blog\\": "module/Blog/src/",
             "Usuario\\": "module/Usuario/src/",
             "Curso\\": "module/Curso/src/",
-            "Catalogo\\": "module/Catalogo/src/"
+            "Catalogo\\": "module/Catalogo/src/",
+            "Stock\\" : "module/Stock/src/"
 			
         }
     },
