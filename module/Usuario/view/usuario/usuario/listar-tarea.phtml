@@ -1,0 +1,59 @@
+<div class="page-header">
+    <h1><?php echo $this->titulo; ?></h1>
+</div>
+<?php if ($this->identity()) : ?>
+    <p><a class="btn btn-default" href="<?php echo $this->url('usuario', ['action' => 'crear',]) ?>">nuevo usuario (+)</a></p>
+<?php endif; ?>
+<table class="table" style="width:700px;">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Detalle</th>
+            <?php 
+			if ($this->identity()) : 
+			?>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            <?php 
+			endif; 
+			?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->listaUsuario as $usuario): ?>
+            <tr style="background-color:<?php echo $this->cycle(array("#F0F0F0", "#FFFFFF"))->next() ?>">
+                <td><?php echo $usuario->getId() ?></td>
+                <td><?php echo $usuario->getNombre() ?></td>
+                <td><?php echo $usuario->getApellido() ?></td>
+                <td><?php echo $usuario->getEmail() ?></td>
+                <td>
+                    <a class="btn btn-default btn-xs" 
+                       href="<?php echo $this->basePath() ?>/usuario/ver/<?php echo $usuario->getId() ?>">ver</a>
+                </td>
+                <?php 
+				if ($this->identity()) : 
+				?>
+                    <td>
+                        <a class="btn btn-primary btn-xs" 
+                           href="<?php echo $this->url('usuario', ['action' => 'editar', 'id' => $usuario->getId()]) ?>">editar</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" 
+                           onclick="return confirm('esta seguro que decea eliminar <?= $usuario->getNombre() ?>?');"
+                           href="<?php echo $this->url('usuario', ['action' => 'eliminar', 'id' => $usuario->getId()]) ?>">eliminar</a>
+                    </td>
+                <?php 
+				endif; 
+				?>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+    <?php
+    $this->cycle()->assign(array("#F0F0F0", "#FFFFFF"));
+    $this->cycle()->prev();
+    ?>
+</table>
+

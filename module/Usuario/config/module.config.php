@@ -1,7 +1,7 @@
 <?php
 namespace Usuario;
 
-//use Zend\ServiceManager\Factory\InvokableFactory;
+use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\Router\Http\Segment;
 
 return [

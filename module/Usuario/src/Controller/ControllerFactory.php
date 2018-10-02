@@ -7,7 +7,7 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 //use Usuario\Model\Dao\UsuarioDao;
 use Usuario\Model\Dao\IUsuarioDao;
 use Usuario\Controller\UsuarioController;
-
+use Usuario\Model\Login;
 
 class ControllerFactory implements FactoryInterface {
 
@@ -21,6 +21,12 @@ class ControllerFactory implements FactoryInterface {
                     $configIni = $container->get('ConfigIni');
                     $controller = new UsuarioController($iusuarioDao, $configIni);
                 break;
+            
+            case LoginController::class :
+                $login = $container->get(Login::class);
+                $controller = new LoginController($login);
+                break;
+            
             default:
                 return (null === $options) ? new $requestedName : new $requestedName($options);
         }

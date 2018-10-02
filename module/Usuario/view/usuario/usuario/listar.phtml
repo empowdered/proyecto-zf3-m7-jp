@@ -2,10 +2,16 @@
 <div class="page-header">
 <h1><?= $this->escapeHtml($this->titulo) ?></h1>
 </div>
+<?php
+if($this->identity()):
+?>
 <p>
 <a class = 'btn btn-default btn-xs' role = 'button'
 href="<?= $this->url('usuario', ['action' => 'crear']); ?>">crear (+)</a>
 </p>
+<?php
+endif;
+?>
 <table class="table table-bordered" style="width:700px;">
 <thead>
 <tr>
@@ -14,8 +20,14 @@ href="<?= $this->url('usuario', ['action' => 'crear']); ?>">crear (+)</a>
 <th>Apellido</th>
 <th>Correo</th>
 <th>nombre usuario</th>
+<?php
+if($this->identity()):
+?>
 <th>Editar</th>
 <th>Eliminar</th>
+<?php
+endif;
+?>
 </tr>
 </thead>
 <tbody>
@@ -29,7 +41,9 @@ foreach ($this->listaUsuario as $usuarios):
 <td><?= $usuarios->getApellido() ?></td>
 <td><?= $usuarios->getCorreo() ?></td>
 <td><?= $usuarios->getUserName()?></td>
-
+<?php
+if($this->identity()):
+?>
 <td>
 <a href="<?= $this->url('usuario', ['action' => 'editar', 'id' => $usuarios->getId()]) ?>"
 class='btn btn-primary btn-xs' role='button'>editar</a>
@@ -39,6 +53,9 @@ class='btn btn-primary btn-xs' role='button'>editar</a>
 onclick="return confirm('¿Esta seguro que desea eliminar a <?= $usuarios->getId() ?>?');"
 class='btn btn-danger btn-xs' role='button'>eliminar</a>
 </td>
+<?php
+endif;
+?>
 </tr>
 <?php endforeach; ?>
 </tbody>

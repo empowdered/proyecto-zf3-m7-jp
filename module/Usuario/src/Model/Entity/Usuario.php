@@ -54,21 +54,21 @@ class Usuario {
     }
     public function exchangeArray($data) 
     {
-        $this->id = (isset($data['idUsuario'])) ? $data['idUsuario'] : null;
-        $this->nombre = (isset($data['nbUsuario'])) ? $data['nbUsuario'] : null;
-        $this->apellido = (isset($data['appUsuario'])) ? $data['appUsuario'] : null;
-        $this->correo = (isset($data['mailUsuario'])) ? $data['mailUsuario'] : null;
-        $this->username = (isset($data['nickUsuario'])) ? $data['nickUsuario'] : null;
-        $this->password = (isset($data['passUsuario'])) ? $data['passUsuario'] : null;
+        $this->setId((isset($data['idUsuario'])) ? $data['idUsuario'] : null);
+        $this->setNombre((isset($data['nbUsuario'])) ? $data['nbUsuario'] : null);
+        $this->setApellido((isset($data['appUsuario'])) ? $data['appUsuario'] : null);
+        $this->setCorreo((isset($data['mailUsuario'])) ? $data['mailUsuario'] : null);
+        $this->setUserName((isset($data['nickUsuario'])) ? $data['nickUsuario'] : null);
+        $this->setPassword((isset($data['passUsuario'])) ? $data['passUsuario'] : null);
     }
     public function exchangeArray2($data)
     {
-        $this->id = (isset($data['id'])) ? $data['id'] : null;
-        $this->nombre = (isset($data['nombre'])) ? $data['nombre'] : null;
-        $this->apellido = (isset($data['apellido'])) ? $data['apellido'] : null;
-        $this->correo = (isset($data['email'])) ? $data['email'] : null;
-        $this->username = (isset($data['username'])) ? $data['username'] : null;
-        $this->password = (isset($data['password'])) ? $data['password'] : null;
+        $this->setId((isset($data['id'])) ? $data['id'] : null);
+        $this->setNombre((isset($data['nombre'])) ? $data['nombre'] : null);
+        $this->setApellido((isset($data['apellido'])) ? $data['apellido'] : null);
+        $this->setCorreo((isset($data['email'])) ? $data['email'] : null);
+        $this->setUserName((isset($data['username'])) ? $data['username'] : null);
+        $this->setPassword((isset($data['password'])) ? $data['password'] : null);
         
     }
     public function getArrayCopy() {

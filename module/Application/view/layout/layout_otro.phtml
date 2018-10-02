@@ -57,14 +57,19 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Registrarse</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="">Registrarse</a></li>
+            <li><a href="">Login</a></li>
             <li class="active"><a href="#">Idioma <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-        <div class="container">
+    <?=$this->flashMessenger()->render('error', array('alert', 'alert-dismissible', 'alert-danger'))?>
+    <?=$this->flashMessenger()->render('info', array('alert', 'alert-dismissible','alert-info'))?>
+    <?=$this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning'))?>
+    <?=$this->flashMessenger()->render('success', array('alert', 'alert-dismissible', 'alert-success'))?>
+        
+    <div class="container">
 			<?php if($this->layout()->tiempoInicial):?>
 					<div class="alert-success" role="alert">
 					<?php echo $this->layout()->tiempoInicial ?>

@@ -26,7 +26,7 @@ class UsuarioController extends AbstractActionController {
     }
 
     public function listarAction() {
-		
+	
         $layout = $this->layout();
         //$layout->algunaVariable = "datos";
         $layout->setTemplate('layout/layout_otro');

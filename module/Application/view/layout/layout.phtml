@@ -45,6 +45,10 @@
                 </div>
             </div>
         </nav>
+        <?= $this->flashMessenger()->render('error', array('alert', 'alert-dismissible', 'alert-danger')) ?>
+        <?= $this->flashMessenger()->render('info', array('alert', 'alert-dismissible', 'alert-info')) ?>
+        <?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')) ?>
+        <?= $this->flashMessenger()->render('success', array('alert', 'alert-dismissible', 'alert-success')) ?>
         <div class="container">
             <?= $this->layout()->content; ?>
             <hr>

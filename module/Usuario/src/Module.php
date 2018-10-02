@@ -10,26 +10,25 @@ namespace Usuario;
 
 use Zend\Mvc\MvcEvent;
 use Zend\Db\Adapter\AdapterInterface;
-use Zend\Db\ResultSet\ResultSet;
+use Zend\Authentication\AuthenticationService;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 //esta es la linea de zend-authenticator
-use Zend\Authentication\AuthenticationService;
+
 use Usuario\Model\Dao\IUsuarioDao;
 use Usuario\Model\Dao\UsuarioDao;
 use Usuario\Model\Entity\Usuario;
+use Usuario\Model\Login;
 
 class Module {
 
     function getConfig() {
         return include __DIR__ . '/../config/module.config.php';
     }
-
-    function onBootstrap($e) {
-        $eventManager = $e->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onStart'], 100);
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'onEnd'], -100);
-    }
+    
+   
     function initAuth(MvcEvent $e){
         $application = $e->getApplication();
         $serviceManager = $application->getServiceManager();
@@ -41,28 +40,23 @@ class Module {
         
         $matches = $e->getRouteMatch();
         $controllerName = $matches->getParam('controller');
-        
+                switch ($controllerName) {
+        case Controller\LoginController::class:
+                if (in_array($action, ['index', 'autenticar'])) {
+                    // Validamos cuando el controlador sea Login
+                    // exepto las acciones index y autenticar.
+                    return;
+                }
+                break;
+         
+        }
+        if (!$auth->isLoggedIn()) {
+            // No existe Session, redirigimos al login.
+            $matches->setParam('controller', Controller\LoginController::class);
+            $matches->setParam('action', 'index');
+        }
     }
-    function onStart($e) {
-        $application = $e->getApplication();
-        $sm = $application->getServiceManager();
-        $inicio = round(microtime(true) * 1000);
-        $sm->setService('time_start', $inicio);
-    }
-
-    function onEnd($e) {
-
-        $application = $e->getApplication();
-        $sm = $application->getServiceManager();
-        $time_start = $sm->get('time_start');
-        $time_end = round(microtime(true) * 1000);
-        $resultado = round($time_end - $time_start);
-        //$resultado = $time_start;
-        $e->getViewModel()->setVariable('tiempoInicial', "El tiempo de arranque es de {$time_start} milisegundos");
-        $e->getViewModel()->setVariable('tiempoFinal', "El tiempo final de parada es de {$time_end} milisegundos");
-        $e->getViewModel()->setVariable('tiempoCarga', "El tiempo de carga total es de {$resultado} milisegundos");
-    }
-    	
+    
 	//esta funcion no existe en la version solucion4
     function initConfig(MvcEvent $e)
     {
@@ -107,3 +101,26 @@ class Module {
         ];
     }
 }
+/*
+ *  
+ * 
+    function onStart($e) {
+        $application = $e->getApplication();
+        $sm = $application->getServiceManager();
+        $inicio = round(microtime(true) * 1000);
+        $sm->setService('time_start', $inicio);
+    }
+
+    function onEnd($e) {
+
+        $application = $e->getApplication();
+        $sm = $application->getServiceManager();
+        $time_start = $sm->get('time_start');
+        $time_end = round(microtime(true) * 1000);
+        $resultado = round($time_end - $time_start);
+        //$resultado = $time_start;
+        $e->getViewModel()->setVariable('tiempoInicial', "El tiempo de arranque es de {$time_start} milisegundos");
+        $e->getViewModel()->setVariable('tiempoFinal', "El tiempo final de parada es de {$time_end} milisegundos");
+        $e->getViewModel()->setVariable('tiempoCarga', "El tiempo de carga total es de {$resultado} milisegundos");
+    }
+    */	
